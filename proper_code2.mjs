@@ -55,7 +55,7 @@ while (wantToReplay == true) {
     let allWrongGuesses = [];
     let usedRightAnswers = [];
    
-    function drawLetterLines() {
+    function drawWordDisplay() {
 
         wordDisplay = CHAR.EMPTY;
     
@@ -71,7 +71,7 @@ while (wantToReplay == true) {
         return wordDisplay;
     }
     
-    function drawWrongWords(list, color) {
+    function drawList(list, color) {
         let output = color;
         for (let i = 0; i < list.length; i++) {
             output += list[i] + CHAR.SPACE;
@@ -91,8 +91,8 @@ while (wantToReplay == true) {
 
     while (isGameOver == false) {
     console.log(ANSI.CLEAR_SCREEN);
-    console.log(drawLetterLines());
-    console.log(drawWrongWords(wrongGuesses, ANSI.COLOR.RED));
+    console.log(drawWordDisplay());
+    console.log(drawList(wrongGuesses, ANSI.COLOR.RED));
     console.log(HANGMAN_UI[wrongGuesses.length + allWrongGuesses.length]);
 
     const answer = (await askQuestion(PLAYER_MESSAGES.INSERT_CHAR_OR_WORD)).toLowerCase();
@@ -146,8 +146,8 @@ while (wantToReplay == true) {
     }
     }
     console.log(ANSI.CLEAR_SCREEN);
-    console.log(drawLetterLines());
-    console.log(drawWrongWords(wrongGuesses, ANSI.COLOR.RED));
+    console.log(drawWordDisplay());
+    console.log(drawList(wrongGuesses, ANSI.COLOR.RED));
     console.log(HANGMAN_UI[wrongGuesses.length + allWrongGuesses.length]);
 
     if (wasGuessCorrect) {
