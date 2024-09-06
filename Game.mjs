@@ -53,6 +53,7 @@ let totalRoundsPlayed = 0;
 while (wantToReplay == true) {
     let wrongGuesses = [];
     let allWrongGuesses = [];
+    let usedRightAnswers = [];
    
     function drawWordDisplay() {
 
@@ -100,8 +101,14 @@ while (wantToReplay == true) {
     if (answer == correctWord) {
         isGameOver = true;
         wasGuessCorrect = true;
+        
        
-    } else if (playerGuessed(answer)) {
+    }  
+    else if (usedRightAnswers.includes(answer)){
+        allWrongGuesses.push(answer);
+        wrongGuessesTotal++
+    }
+    else if (playerGuessed(answer)) {
         let org = guessedWord;
         guessedWord = CHAR.EMPTY;
 
@@ -110,7 +117,7 @@ while (wantToReplay == true) {
             if (correctWord[i] == answer) {
                 guessedWord += answer;
                 isCorrect = true;
-                
+                 usedRightAnswers.push(answer);
             } else {
                 guessedWord += org[i];
             }
@@ -125,6 +132,7 @@ while (wantToReplay == true) {
             wrongGuesses.push(answer);
             wrongGuessesTotal++;
         }
+       
         
         else if (guessedWord == correctWord) {
             isGameOver = true;
